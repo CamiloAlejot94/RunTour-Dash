@@ -1,3 +1,44 @@
-<h1>
-  {{title}}
-</h1>
+<div class="screen">
+  <div class="console">
+    <div class="titleConsole">
+      <img src="assets/logoRun.svg" style="    width: 60%;">
+</div>
+
+<div class="addplace">
+  <button class="btnPLace">ADD PLACE</button>
+</div>
+
+<div class="form">
+  <span class="placeInfo">PLACE INFORMATION</span>
+  <input type="Name" placeholder="Name" [(ngModel)]="name" style="height: 10%">
+<input type="Description" placeholder="Description" [(ngModel)]="Description">
+<input type="infoSigth" placeholder="Sigth information" [(ngModel)]="infoSigth">
+<button class="placeBtn">
+          CHOOSE A FILE
+        </button>
+<button class="placeBtn" style="margin-top: 1.5vh;"> SAVE PLACE
+</button>
+
+<hr class="placeLine">
+</div>
+
+
+<div class="points">
+  <div class="placeInfo">POINTS</div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="map">
+  <div id="map"></div>
+  
+</div>
+</div>
