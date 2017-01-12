@@ -9,16 +9,32 @@ declare var google: any;
 
 export class AppComponent implements OnInit{ 
   map: any
-
-
+	marker: any 
+	myLatLng: any
+	newLatLng: any
 ngOnInit(){
-let myLatLng = { lat: 4.598434, lng: -74.076680 };
+this.myLatLng = { lat: 4.598434, lng: -74.076680 };
 	
 		this.map = new google.maps.Map(document.getElementById('map'), {
 			zoom: 12,
-			center: myLatLng,
+			center: this.myLatLng,
 			disableDefaultUI: true
 		});
 
+		
+  this.marker = new google.maps.Marker({
+    position: this.myLatLng,
+    map: this.map,		
+  });
+	
+
+ }
+
+ setMarker(){
+	//  debugger	
+		this.map.addListener('click', (event)=> {
+ 				this.newLatLng = new google.maps.LatLng(event.latLng.lat(), event.latLng.lng())
+				 this.marker.setPosition(this.newLatLng)
+  });	
  }
 }
