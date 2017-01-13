@@ -18,9 +18,12 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
-        "styles.scss"
+        "styles.scss",
+        "../node_modules/sweetalert2/dist/sweetalert2.min.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/sweetalert2/dist/sweetalert2.min.js"
+      ],
       "environments": {
         "source": "environments/environment.ts",
         "dev": "environments/environment.ts",

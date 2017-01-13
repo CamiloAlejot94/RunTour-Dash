@@ -1,75 +1,143 @@
  #map {
-    height            : 100%;
-  }
-.screen{
-    width: 100%;
-    height: 100%;
-}
-.console{
-    width: 20%;
-    height: 100%;
-    background: #1e1e1e;    
-    position: absolute;
-}
+   height: 100%;
+ }
+ 
+ .screen {
+   width: 100%;
+   height: 100%;
+ }
+ 
+ .console {
+   width: 20%;
+   height: 100%;
+   background: #1e1e1e;
+   position: absolute;
+ }
+ 
+ .titleConsole {
+   height: 10%;
+   background: linear-gradient(to right, #fa6100 0%, #d92733 100%);
+   display: flex;
+   align-content: center;
+   justify-content: center;
+ }
+ 
+ .map {
+   width: 80%;
+   height: 100%;
+   top: 0;
+   right: 0;
+   position: absolute;
+ }
+ 
+ .addplace {
+   display: flex;
+   align-content: center;
+   justify-content: center;
+   color: white;
+   height: 10%;
+ }
+ 
+ .btnPLace {
+   font-family: Roboto;
+   background: transparent;
+   border: none;
+   color: white;
+   font-size: 1.8em;
+   letter-spacing: 2px;
+ }
+ 
+ .form {
+   height: 50%;
+   text-align: center
+ }
+ 
+ .placeInfo {
+   color: #fa6100;
+   font-size: 1.2em;
+ }
+ 
+ .placeBtn {
+   background: white;
+   color: #fa6100;
+   width: 80%;
+   height: 6vh;
+   border: none;
+   border-radius: 5px;
+   margin-top: 2vh;
+ }
+ 
+ .placeLine {
+   height: 4px;
+   background: linear-gradient(to right, #fa6100 0%, #d92733 100%);
+   border: none;
+   margin-top: 1.8vh;
+ }
+ 
+ .points {
+   height: 30%;
+   text-align: center
+ }
 
-.titleConsole{
-    height: 10%;
-    background: linear-gradient(to right, #fa6100 0%,#d92733 100%);
-    display: flex;
-    align-content: center;
-    justify-content: center;    
-}
-
-.map{
-    width: 80%;
-    height: 100%;
-    top: 0;
-    right: 0;
-    position: absolute;
-}
-
-.addplace{
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    color: white;    
-    height: 10%;
-}
-
-.btnPLace{
-    font-family: Roboto;
-    background: transparent;
-    border: none;
+ .lista{
+    height: 90%;
+    overflow-y: auto;
     color: white;
-    font-size: 1.8em;
-    letter-spacing: 2px;
-}
-.form{
-    height: 50%;
-    text-align: center    
-}
-.placeInfo{
-    color: #fa6100;
-    font-size: 3vh;
-}
-.placeBtn{
-    background: white;
-    color: #fa6100;
-    width: 80%;
-    height: 6vh;
-    border: none;
-    border-radius: 5px;
-    margin-top: 2vh;    
-}
-.placeLine{
-    height: 4px;
-    background: linear-gradient(to right, #fa6100 0%,#d92733 100%);
-    border: none;
-    margin-top: 1.8vh;
-    }
+    padding-right: 15px;
+    padding-left: 15px;
+ }
 
-.points{
-    height: 30%;
-    text-align: center   
+ .misvg {
+    margin: auto;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    -webkit-mask: url("assets/img/descarga.svg") no-repeat 50% 50%;
+    mask: url("assets/img/descarga.svg") no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
 }
 
+.punto{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.inputfile{
+  opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.milabel{
+    position: relative;
+    cursor: pointer;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 12px;
+    padding-top: 12px;
+}
+
+.load {
+  width           : 100%;
+  height          : 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  position        : absolute;
+  top             : 0;
+  left            : 0;
+  z-index         : 10;
+
+  .cont-img {
+    padding: 16px;
+    background-color: #fa6100;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30%;
+  }
+}

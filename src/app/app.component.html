@@ -1,3 +1,12 @@
+<!--login animation-->
+<div class="load" *ngIf="load">
+    <div class="cont-img">
+        <img src="assets/img/load.gif" />
+    </div>
+</div>
+
+
+
 <div class="screen">
   <div class="console">
     <div class="titleConsole">
@@ -13,11 +22,13 @@
   <input type="Name" placeholder="Name" [(ngModel)]="name" style="height: 10%">
 <input type="Description" placeholder="Description" [(ngModel)]="Description">
 <input type="infoSigth" placeholder="Sigth information" [(ngModel)]="infoSigth">
-<button class="placeBtn">
-          CHOOSE A FILE
+<button class="placeBtn" >
+        <input type="file" name="file" id="file" class="inputfile" accept="image/*"/>
+        <label for="file" class="milabel">
+          CHOOSE A FILE</label>
         </button>
-<button class="placeBtn" style="margin-top: 1.5vh;"> SAVE PLACE
-</button>
+<button class="placeBtn" style="margin-top: 1.5vh;" (click)="save()" *ngIf="!key"> SAVE PLACE</button>
+<button class="placeBtn" style="margin-top: 1.5vh;" (click)="update()" *ngIf="key"> UPDATE PLACE</button>
 
 <hr class="placeLine">
 </div>
@@ -25,6 +36,19 @@
 
 <div class="points">
   <div class="placeInfo">POINTS</div>
+  <div class="lista">
+    <div class="punto row" *ngFor="let item of listaPuntos" style="align-items: center;" (click)="centerPoint(item.localitation.lat,item.localitation.lng)">
+      <div class="col-md-10">
+          <span>{{item.name}}</span>
+      </div>
+      <div class="col-md-2">
+        <div class="misvg" >
+          
+        </div>
+      </div>
+      
+    </div>
+  </div>
 </div>
 
 </div>
@@ -38,7 +62,7 @@
 
 
 <div class="map" >
-  <div id="map" (click)="setMarker()"></div>
+  <div id="map"></div>
   
 </div>
 </div>
