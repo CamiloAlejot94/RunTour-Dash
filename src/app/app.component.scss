@@ -1,6 +1,31 @@
  #map {
    height: 100%;
  }
+  .serchdivBig{
+    width: 35%;
+    height: 5vh;
+    background: -webkit-linear-gradient(left, #fa6100 0%, #d92733 100%);
+    background: linear-gradient(to right, rgba(250, 97, 0, 1.2) 0%, rgba(217, 39, 51, 1.2) 100%);
+    border-radius: 8px;
+    position: absolute;
+    top: 2vh;
+    left: 32.5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .serchdivMiddle{
+    width: 98%;
+    height: 80%;
+    background: rgba(37, 32, 29, 1.2);
+    border-radius: 7px;
+    margin: 0;
+  }
+  .icoSerch{
+    color: white;
+    background: none;
+
+  }
  
  .screen {
    width: 100%;
@@ -140,4 +165,6 @@
     margin-right: auto;
     margin-top: 30%;
   }
+// background: linear-gradient(to right, rgba(250, 97, 0, 0.2) 0%, rgba(217, 39, 51, 0.2) 100%);
+ 
 }
