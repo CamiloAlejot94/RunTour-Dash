@@ -1,7 +1,7 @@
 #map {
    height: 100%;
  }
-
+ 
 .serchdivBig{
     width: 35%;
     height: 5vh;
@@ -219,10 +219,10 @@
     align-items: center;
     font-size: 3em;
     border: 1px solid;
-     webkit-transition: all 3s ease-in-out;
-    -moz-transition: all 3s ease-in-out;
-    -o-transition: all 3s ease-in-out;
-    transition: all 3s ease-in-out;
+     webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 .notifBtn2{
@@ -247,9 +247,10 @@
     left: 2vh;
 }
 .contenedor{
-  height: 86%;
+  height: 91%;
   margin-bottom: 0;
   overflow-y: auto;
+  margin-top: 2%
 }
 
 .notification{
@@ -279,12 +280,5 @@ i{display: none}
     border-radius: 8px;
     overflow-y: auto;
 }
-.erase{
-    position: absolute;
-    width: 9vh;
-    height: 9vh;
-    background: green;
-    bottom: 3vh;
-    left: 3vh;
-    border-radius: 50%;
-}
+
+

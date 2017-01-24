@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit,DoCheck, NgZone } from '@angular/core';
 import { environment } from '../environments/environment'
 import * as _ from 'underscore';
 
@@ -21,7 +21,17 @@ export class AppComponent implements OnInit {
 	myLatLng: any
 	newLatLng: any
 	infoMArker: any
+	
+	// lista de keys de todos los puntos 
+	listaPintKeys=[]
+	// Variable apuntador para lista de puntos 
+	spot : number
+	// Variable para mostrar/ocultar el boton de eliminar 
 	erase= null
+	// Lista de los keys de las notificaciones 
+	listaKeys=[]
+	// 
+	numNotif: string= ''
 
 	listaPuntos = []
 	listaNotificaciones = []
@@ -31,8 +41,7 @@ export class AppComponent implements OnInit {
 	longt: any
 	LatLng: any
 	notifDate: any
-	keys : any 
-	listaKeys=[]
+	
 
 
 
@@ -110,9 +119,11 @@ export class AppComponent implements OnInit {
 			//-----------------------------------------------------------------
 			// puntos agregados
 			//-----------------------------------------------------------------
-			firebase.database().ref('/points').on('child_added', snap => {
-
+			firebase.database().ref('/points').on('child_added', snap => {				
 				let place = snap.val()
+				var keys = snap.key
+				this.listaPintKeys.push(keys)				
+
 				this.zone.run(() => {
 					this.listaPuntos.push(place)
 				})
@@ -129,6 +140,7 @@ export class AppComponent implements OnInit {
 					if (this.marker) {
 						this.marker.setMap(null)
 						this.marker = null
+						this.erase= true
 					}
 					this.zone.run(() => {
 						this.key = snap.key
@@ -146,9 +158,10 @@ export class AppComponent implements OnInit {
 			// puntos cambiados
 			//-----------------------------------------------------------------
 			firebase.database().ref('/points').on('child_changed', snap => {
+				
 				let place = snap.val()
 				this.listaPuntos[this.index] = place
-				let marker = this.listMarker[snap.key]
+				let marker = this.listMarker[snap.key]				
 				google.maps.event.clearListeners(marker, 'click');
 
 
@@ -166,21 +179,30 @@ export class AppComponent implements OnInit {
 					})
 				})
 			})
-
+			//-----------------------------------------------------------------
+			// cargar las notificaciones 
+			//-----------------------------------------------------------------
 			firebase.database().ref('Notifications').on('child_added', snap => {
+				// debugger
 				let val = snap.val()
 				this.listaNotificaciones.push(val)
-				this.keys= snap.key
-				this.listaKeys.push(this.keys)
+				var keys= snap.key
+				this.listaKeys.push(keys)
 				this.notifLat = val.latitud
 				this.notifLong = val.longitud
-				this.notifDate = val.fecha			
+				this.notifDate = val.fecha														
+				if (this.listaKeys.length != 0){
+					this.numNotif="notifBtn2"
+				}
+				
 			})
+			
 		})
+
+		
 	}
 
-
-
+	
 	loadScript(filename, callback) {
 		var fileref = document.createElement('script');
 		fileref.setAttribute("type", "text/javascript");
@@ -315,9 +337,9 @@ export class AppComponent implements OnInit {
 
 	}
 
-	notifications(notification: HTMLElement) {
-		notification.classList.toggle('notifBtn2')
-	}
+	
+
+// metodo para centar el mapa y el marcador en las coordenadas de la notificacion
 
 	goToCoordinates(i) {
 		this.LatLng = new google.maps.LatLng({ lat: this.listaNotificaciones[i].latitud, lng: this.listaNotificaciones[i].longitud });
@@ -325,15 +347,24 @@ export class AppComponent implements OnInit {
 		this.map.setZoom(16)
 		this.marker.setPosition(this.LatLng)
 	}
-
+// metodo para eliminar las notificaciones, 
+// listaKeys es una lista con los keys de cada notificaciones
+// i viene del index que esta imprimiendo la lista en el HTML
+// lista notificaciones es el vector que tiene todas las notificaciones 
 	delete(i) {		
 		firebase.database().ref('Notifications/'+this.listaKeys[i]).remove();
 		this.listaNotificaciones.splice(i,1)	
 	}
 	
-
-
-
-
+// Metodo para eliminar los puntos
+// listaPintKeys es una lista con los keys de cada punto 
+// spot viene de el index que esta imprimiendo los puntos y se usa para apuntar al key que se desea eliminar 
+// listaPuntos es el vector que tiene todos los puntos 
+	eraseRef(){		
+		firebase.database().ref('points/'+this.listaPintKeys[this.spot]).remove();
+		this.listaPuntos.splice(this.spot,1)
+		console.log (this.listaPuntos)
+		this.erase=null			
+	}
 
 }
