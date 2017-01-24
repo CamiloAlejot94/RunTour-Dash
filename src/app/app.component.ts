@@ -21,8 +21,22 @@ export class AppComponent implements OnInit {
 	myLatLng: any
 	newLatLng: any
 	infoMArker: any
+	erase= null
 
 	listaPuntos = []
+	listaNotificaciones = []
+	notifLat: any
+	notifLong: any
+	lat: any
+	longt: any
+	LatLng: any
+	notifDate: any
+	keys : any 
+	listaKeys=[]
+
+
+
+
 
 	name: string
 	Description: string
@@ -32,9 +46,9 @@ export class AppComponent implements OnInit {
 
 	key: string
 
-	placeTemporal:any
+	placeTemporal: any
 
-	index:number
+	index: number
 
 	listMarker = []
 
@@ -56,22 +70,22 @@ export class AppComponent implements OnInit {
 
 
 		this.map.addListener('click', (event) => {
-
-			this.zone.run(()=>{
+			this.erase=null
+			this.zone.run(() => {
 				this.key = null
 				this.name = null
 				this.Description = null
 				this.infoSigth = null
 			})
 
-			
+
 
 			let localitation = new google.maps.LatLng(event.latLng.lat(), event.latLng.lng());
 			if (this.marker == null) {
 				this.marker = new google.maps.Marker({
 					position: localitation,
 					map: this.map,
-					title: 'Hello World!'
+					
 				});
 			}
 			else {
@@ -100,7 +114,7 @@ export class AppComponent implements OnInit {
 
 				let place = snap.val()
 				this.zone.run(() => {
-					 this.listaPuntos.push(place)
+					this.listaPuntos.push(place)
 				})
 				let direction = new google.maps.LatLng(place['localitation'].lat, place['localitation'].lng);
 				let marker = new google.maps.Marker({
@@ -112,7 +126,7 @@ export class AppComponent implements OnInit {
 				});
 
 				marker.addListener('click', () => {
-					if(this.marker){
+					if (this.marker) {
 						this.marker.setMap(null)
 						this.marker = null
 					}
@@ -131,7 +145,7 @@ export class AppComponent implements OnInit {
 			//-----------------------------------------------------------------
 			// puntos cambiados
 			//-----------------------------------------------------------------
-			firebase.database().ref('/points').on('child_changed', snap=>{
+			firebase.database().ref('/points').on('child_changed', snap => {
 				let place = snap.val()
 				this.listaPuntos[this.index] = place
 				let marker = this.listMarker[snap.key]
@@ -139,7 +153,7 @@ export class AppComponent implements OnInit {
 
 
 				marker.addListener('click', () => {
-					if(this.marker){
+					if (this.marker) {
 						this.marker.setMap(null)
 						this.marker = null
 					}
@@ -153,11 +167,16 @@ export class AppComponent implements OnInit {
 				})
 			})
 
-
-
+			firebase.database().ref('Notifications').on('child_added', snap => {
+				let val = snap.val()
+				this.listaNotificaciones.push(val)
+				this.keys= snap.key
+				this.listaKeys.push(this.keys)
+				this.notifLat = val.latitud
+				this.notifLong = val.longitud
+				this.notifDate = val.fecha			
+			})
 		})
-
-
 	}
 
 
@@ -277,15 +296,15 @@ export class AppComponent implements OnInit {
 
 	}
 
-	update(){
+	update() {
 
-		this.index = _.indexOf(this.listaPuntos,this.placeTemporal)
+		this.index = _.indexOf(this.listaPuntos, this.placeTemporal)
 		let obejct = {
 			'description': this.Description + "",
 			'name': this.name,
 			'info': this.infoSigth
 		}
-		firebase.database().ref('points/'+this.key).update(obejct)
+		firebase.database().ref('points/' + this.key).update(obejct)
 		this.name = null;
 		this.Description = null;
 		this.infoMArker = null;
@@ -293,7 +312,28 @@ export class AppComponent implements OnInit {
 		this.key = null
 		this.placeTemporal = null
 		swal("Success", "The place was update", "success")
-		
+
 	}
+
+	notifications(notification: HTMLElement) {
+		notification.classList.toggle('notifBtn2')
+	}
+
+	goToCoordinates(i) {
+		this.LatLng = new google.maps.LatLng({ lat: this.listaNotificaciones[i].latitud, lng: this.listaNotificaciones[i].longitud });
+		this.map.setCenter(this.LatLng)
+		this.map.setZoom(16)
+		this.marker.setPosition(this.LatLng)
+	}
+
+	delete(i) {		
+		firebase.database().ref('Notifications/'+this.listaKeys[i]).remove();
+		this.listaNotificaciones.splice(i,1)	
+	}
+	
+
+
+
+
 
 }

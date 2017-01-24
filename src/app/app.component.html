@@ -4,73 +4,113 @@
         <img src="assets/img/load.gif" />
     </div>
 </div>
-
-
-
 <div class="screen">
+
+  <!--Inicio del div de consola-->
   <div class="console">
+    <!--Titulo-->
     <div class="titleConsole">
       <img src="assets/logoRun.svg" style="    width: 60%;">
-</div>
+    </div>
 
-<div class="addplace">
-  <button class="btnPLace">ADD PLACE</button>
-</div>
+    <!--Subtitulo-->
+    <div class="addplace">
+      <button class="btnPLace">ADD PLACE</button>
+    </div>
 
-<div class="form">
-  <span class="placeInfo">PLACE INFORMATION</span>
-  <input type="Name" placeholder="Name" [(ngModel)]="name" style="height: 10%">
-<input type="Description" placeholder="Description" [(ngModel)]="Description">
-<input type="infoSigth" placeholder="Sigth information" [(ngModel)]="infoSigth">
-<button class="placeBtn" >
+    <!--Div de formulario-->
+    <div class="form">
+      <span class="placeInfo">PLACE INFORMATION</span>
+      <input type="Name" placeholder="Name" [(ngModel)]="name" style="height: 10%">
+      <input type="Description" placeholder="Description" [(ngModel)]="Description">
+      <input type="infoSigth" placeholder="Sigth information" [(ngModel)]="infoSigth">
+      <button class="placeBtn" >
         <input type="file" name="file" id="file" class="inputfile" accept="image/*"/>
         <label for="file" class="milabel">
-          CHOOSE A FILE</label>
-        </button>
-<button class="placeBtn" style="margin-top: 1.5vh;" (click)="save()" *ngIf="!key"> SAVE PLACE</button>
-<button class="placeBtn" style="margin-top: 1.5vh;" (click)="update()" *ngIf="key"> UPDATE PLACE</button>
+        CHOOSE FILE</label>
+      </button>
 
-<hr class="placeLine">
-</div>
-
-
-<div class="points">
-  <div class="placeInfo">POINTS</div>
-  <div class="lista">
-    <div class="punto row" *ngFor="let item of listaPuntos" style="align-items: center;" (click)="centerPoint(item.localitation.lat,item.localitation.lng)">
-      <div class="col-md-10">
-          <span>{{item.name}}</span>
-      </div>
-      <div class="col-md-2">
-        <div class="misvg" >
-          
+      <!--Botones de agregar y editar lugar-->
+      <button class="placeBtn" style="margin-top: 1.5vh;" (click)="save()" *ngIf="!key"> SAVE PLACE</button>
+      <button class="placeBtn" style="margin-top: 1.5vh;" (click)="update()" *ngIf="key"> UPDATE PLACE</button>
+      <hr class="placeLine">
+    </div>
+    
+  <!--seccion de vista de puntos-->
+  <div class="points">
+    <!--titulo-->
+    <div class="placeInfo">POINTS</div>
+    <div class="lista">
+      <div class="punto row" *ngFor="let item of listaPuntos" style="align-items: center;" (click)="centerPoint(item.localitation.lat,item.localitation.lng); erase=true">
+        <div class="col-md-10">
+            <span>{{item.name}}</span>
         </div>
+        <div class="col-md-2">
+          <div class="misvg" >            
+          </div>
+        </div>        
       </div>
-      
     </div>
   </div>
+  <!--Fin seccion de vista de puntos-->
+
+
 </div>
-
-</div>
-
+<!--Fin Div de consola-->
 
 
 
-
-
-
-
-
+<!--Inicio del mapa-->
 <div class="map" >
   <div id="map"></div>
-  <div class="serchdivBig">
-    <!--<div class="serchdivMiddle">-->
-      <input type="Name" placeholder="Serch" [(ngModel)]="name" class="serchdivMiddle">     
-     <i class="ios-search"></i>
+  <!--Search toobar-->
+  <div class="serchdivBig" >
+    <input type="Name" placeholder="Serch" [(ngModel)]="name" class="serchdivMiddle">          
+      <i class="icon ion-ios-search" style="position: absolute; color: white; left: 1vh"></i>    
+  </div>
+  <!--Boton de notificaciones-->
+  <div class="notifBtn" #notification (click)="notifications(notification); notifDiv=true" >
+    <i class="ion-ios-bell-outline"></i>    
+  </div>
 
-    <!--</div>-->
+  <!--Inicio del div de notificaciones-->
+  <div class="notifDiv" *ngIf=notifDiv>
+      <!--Titulo y close-->
+      <div class="addplace" style="padding: 2vh">
+        <span class="btnPLace">Notificaciones</span>
+        <div (click)="notifDiv=null;notifications(notification)" class="hideNotifDiv">
+          <i class="icon ion-minus-circled"></i>    
+        </div>
+      </div>
+      <!--notificaciones-->
+        <div class="contenedor">
+
+      <div class="notification" *ngFor="let notif of listaNotificaciones; let i=index">
+        <div class="notificarionDiv">
+            <div style="border-bottom: 1px solid white;display: flex;padding: 0.5vh;">
+            <div class="misvg" style="width: 2vh;height: 2vh;margin-left: 0px;margin-right: 9px;"></div>
+            Notificacion {{i+1}}
+            <span style="margin-left: 20vh;">{{listaNotificaciones[i].fecha}}</span>
+            <i class="icon ion-close-circled" style="font-size: 1em;margin-left: 27vh;"(click)="delete(i)" ></i>
+            </div>
+            <div style="display: flex">
+            <div class="notifTxt" style="padding-left: 1vh;height: 6.5vh;overflow-y: auto;border-right: 1px solid; width: 80%"> 
+             {{listNot}}
+            </div>            
+            <i class="icon ion-ios-eye-outline" style="font-size: 3em;margin-left: 4%;margin-top: 1%;" (click)="goToCoordinates(i)"></i>
+            </div>
+          </div>
+      </div>
+      </div>
+
+
+      
     
   </div>
-  
+  <div class="notifBtn" #notification style="bottom: 3vh; left: 3vh;top: initial;" *ngIf="erase" >
+    <i class="ion-ios-trash-outline"></i>    
+  </div>
+
 </div>
+<!--Fin del mapa-->
 </div>

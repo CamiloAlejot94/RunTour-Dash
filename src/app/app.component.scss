@@ -1,7 +1,8 @@
- #map {
+#map {
    height: 100%;
  }
-  .serchdivBig{
+
+.serchdivBig{
     width: 35%;
     height: 5vh;
     background: -webkit-linear-gradient(left, #fa6100 0%, #d92733 100%);
@@ -14,32 +15,69 @@
     align-items: center;
     justify-content: center;
   }
-  .serchdivMiddle{
+
+.serchdivMiddle{
     width: 98%;
     height: 80%;
     background: rgba(37, 32, 29, 1.2);
     border-radius: 7px;
     margin: 0;
+    position: relative;
   }
-  .icoSerch{
+
+.icoSerch{
     color: white;
     background: none;
-
   }
  
- .screen {
+.screen {
    width: 100%;
    height: 100%;
+   
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #666666;
+  border: 57px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #666666;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #666666;
+}
+::-webkit-scrollbar-track {
+  background: #000000;
+  border: 16px none #ffffff;
+  border-radius: 100px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #000000;
+}
+::-webkit-scrollbar-track:active {
+  background: #000000;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
  }
  
- .console {
+.console {
    width: 20%;
    height: 100%;
    background: #1e1e1e;
    position: absolute;
  }
  
- .titleConsole {
+.titleConsole {
    height: 10%;
    background: linear-gradient(to right, #fa6100 0%, #d92733 100%);
    display: flex;
@@ -47,7 +85,7 @@
    justify-content: center;
  }
  
- .map {
+.map {
    width: 80%;
    height: 100%;
    top: 0;
@@ -55,7 +93,7 @@
    position: absolute;
  }
  
- .addplace {
+.addplace {
    display: flex;
    align-content: center;
    justify-content: center;
@@ -63,7 +101,7 @@
    height: 10%;
  }
  
- .btnPLace {
+.btnPLace {
    font-family: Roboto;
    background: transparent;
    border: none;
@@ -72,17 +110,17 @@
    letter-spacing: 2px;
  }
  
- .form {
+.form {
    height: 50%;
    text-align: center
  }
  
- .placeInfo {
+.placeInfo {
    color: #fa6100;
    font-size: 1.2em;
  }
  
- .placeBtn {
+.placeBtn {
    background: white;
    color: #fa6100;
    width: 80%;
@@ -92,27 +130,27 @@
    margin-top: 2vh;
  }
  
- .placeLine {
+.placeLine {
    height: 4px;
    background: linear-gradient(to right, #fa6100 0%, #d92733 100%);
    border: none;
    margin-top: 1.8vh;
  }
  
- .points {
+.points {
    height: 30%;
    text-align: center
  }
 
- .lista{
-    height: 90%;
+.lista{
+    height: 88%;
     overflow-y: auto;
     color: white;
     padding-right: 15px;
     padding-left: 15px;
  }
 
- .misvg {
+.misvg {
     margin: auto;
     width: 20px;
     height: 20px;
@@ -146,15 +184,15 @@
 }
 
 .load {
-  width           : 100%;
-  height          : 100%;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
-  position        : absolute;
-  top             : 0;
-  left            : 0;
-  z-index         : 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
 
-  .cont-img {
+.cont-img {
     padding: 16px;
     background-color: #fa6100;
     border-radius: 50%;
@@ -164,7 +202,89 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 30%;
-  }
+}
 // background: linear-gradient(to right, rgba(250, 97, 0, 0.2) 0%, rgba(217, 39, 51, 0.2) 100%);
- 
+}
+.notifBtn{
+    position: absolute;
+    top: 2vh;
+    right: 2vh;
+    background: white ;
+    color: #fa6100;
+    width: 8vh;
+    height: 8vh;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    border: 1px solid;
+     webkit-transition: all 3s ease-in-out;
+    -moz-transition: all 3s ease-in-out;
+    -o-transition: all 3s ease-in-out;
+    transition: all 3s ease-in-out;
+}
+
+.notifBtn2{
+       background: #d92733;
+       color: white;
+       border: 1px white solid;
+}
+
+.notifDiv{
+       position: absolute;
+       width: 30%;
+       height: 100%;
+       background: rgb(30,30,30);
+       top: 0;
+       right: 0;  
+       
+}
+
+.hideNotifDiv{
+    font-size: 2em;
+    position: absolute;
+    left: 2vh;
+}
+.contenedor{
+  height: 86%;
+  margin-bottom: 0;
+  overflow-y: auto;
+}
+
+.notification{
+  display: flex;
+  margin-top: 2vh;
+i{display: none}
+}
+
+
+.notification:hover{
+  span {
+    display: none    
+  }
+  i{
+    display: block;
+  }
+
+}
+.notificarionDiv{
+  border: 1px solid white;
+    width: 90%;
+    height: 10vh;
+    color: white;
+    position: relative;
+    font-size: 0.7em;
+    margin-left: 5%;
+    border-radius: 8px;
+    overflow-y: auto;
+}
+.erase{
+    position: absolute;
+    width: 9vh;
+    height: 9vh;
+    background: green;
+    bottom: 3vh;
+    left: 3vh;
+    border-radius: 50%;
 }
