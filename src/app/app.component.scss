@@ -232,12 +232,12 @@
 }
 
 .notifDiv{
-       position: absolute;
-       width: 30%;
-       height: 100%;
-       background: rgb(30,30,30);
-       top: 0;
-       right: 0;  
+    position: absolute;
+    width: 30%;
+    height: 100%;
+    background: rgba(10, 10, 10, 0.97);
+    top: 0;
+    right: 0;  
        
 }
 
@@ -270,15 +270,15 @@ i{display: none}
 
 }
 .notificarionDiv{
-  border: 1px solid white;
-    width: 90%;
-    height: 10vh;
+  
+    width: 90%;    
     color: white;
     position: relative;
     font-size: 0.7em;
     margin-left: 5%;
     border-radius: 8px;
     overflow-y: auto;
+        background: rgba(51, 51, 51, 0.93);
 }
 
 

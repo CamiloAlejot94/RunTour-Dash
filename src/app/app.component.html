@@ -79,27 +79,27 @@
   <div class="notifDiv" *ngIf=notifDiv>
       <!--Titulo y close-->
       <div class="addplace" style="padding: 2vh;height: 3%">
-        <span class="btnPLace">NOTIFICATIONS</span>
+        <span class="btnPLace">Notifications</span>
         <div (click)="notifDiv=null;notifications(notification)" class="hideNotifDiv">
-          <i class="icon ion-minus-circled"></i>    
+          <i class="ion-close-circled"></i>    
         </div>
       </div>
       <!--notificaciones-->
         <div class="contenedor">
 
-      <div class="notification" *ngFor="let notif of listaNotificaciones; let i=index">
+      <div class="notification" *ngFor="let notif of listaNotificaciones; let i=index"> 
         <div class="notificarionDiv">
-            <div style="border-bottom: 1px solid white;display: flex;padding: 0.5vh;">
-            <div class="misvg" style="width: 2vh;height: 2vh;margin-left: 0px;margin-right: 9px;"></div>
-            We need more
-            <span style="margin-left: 20vh;">{{listaNotificaciones[i].fecha}}</span>
-            <i class="icon ion-close-circled" style="font-size: 1em;margin-left: 27vh;"(click)="delete(i)" ></i>
+            <div style="display: flex;padding-top: 1.2vh;position: relative;background: rgba(255, 255, 255, 0.13);padding-bottom: 1.2vh;">
+            <img src="assets/img/Icon_1.svg" style="width: 2.5vh;height: 2.5vh;margin-left: 1vh;">
+            <p style="margin: auto;position: absolute;left: 5vh;font-size: 1.4em">We need more sights!</p>
+            <span style="position: absolute;right: 1vh;">{{listaNotificaciones[i].fecha}}</span>
+            <i class="icon ion-close-circled" style="font-size: 1.3em;position: absolute;right: 1vh;top: 0.7vh;"(click)="delete(i)" ></i>
             </div>
             <div style="display: flex">
-            <div class="notifTxt" style="padding-left: 1vh;height: 6.5vh;overflow-y: auto;border-right: 1px solid; width: 80%"> 
-             A user tried to run in this area and sadly :( found no sights, please click in the eye to go to the location.
+            <div class="notifTxt" style="padding: 1.5vh 2vh 1.5vh;;height: 6.5vh;overflow-y: auto; width: 80%;"> 
+             Someone tried to run in this location and didn´t found any sights :(. Click the pin to go to the point. 
             </div>            
-            <i class="icon ion-ios-eye-outline" style="font-size: 3em;margin-left: 4%;margin-top: 1%;" (click)="goToCoordinates(i)"></i>
+            <i class="icon ion-pin" style="font-size: 3em;margin-top: 3%;" (click)="goToCoordinates(i)"></i>
             </div>
           </div>
       </div>
